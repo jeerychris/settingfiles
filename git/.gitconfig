@@ -1,0 +1,14 @@
+[user]
+	email = wshisuifeng@gmail.com
+	name = wshisuifeng
+[core]
+	autocrlf = false
+	safecrlf = true
+	editor = vim
+	excludesfile = C:/Users/Administrator/.gitignore
+[merge]
+	tool = vimdiff
+[winUpdater]
+	recentlySeenVersion = 2.17.0.windows.1
+[alias]
+    hist = log --pretty=format:'%C(auto)%h %ad %an | %s%d' --date=short --decorate --graph
