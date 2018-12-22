@@ -1,0 +1,122 @@
+" vim:set ft=vim:
+" Setting some decent VIM settings for programming
+set autoindent                  " set auto-indenting on for programming
+set showmatch                   " automatically show matching brackets. works like it does in bbedit.
+set ruler                       " show the cursor position all the time
+set smartindent
+set tabstop=4
+set softtabstop=4
+set smarttab
+set expandtab
+set history=1000
+
+" set clipboard=unnamed           " set clipboard to unnamed to access the system clipboard under windows
+set scrolloff=3
+
+set cursorline
+
+" Searching
+set ignorecase
+set smartcase
+set hlsearch
+set incsearch
+nmap <leader>\ :nohlsearch<cr>
+
+noremap Y y$
+noremap zl zL
+noremap zh zH
+noremap H ^
+noremap L $
+noremap Q gq
+noremap U <C-R>
+noremap gV `[v`]
+vnoremap <leader>/ y/<C-R>"<cr>
+
+" Visual shifting (does not exit Visual mode)
+vnoremap < <gv
+vnoremap > >gv
+
+" MAKE IT EASY TO UPDATE/RELOAD _vimrc
+noremap ,v :source ~/.vrapperrc<CR>
+
+" These settings are specific to Vrapper (not found in Vim)
+" +------------------------------------------------------------------------------------+
+set contentassistmode           " Enables c-n and c-p to move selection up and down in the content-assist dropdown. Use camap to map other keys to c-n or c-p.
+set startnormalmode
+
+" vrapper plugins
+
+" surround.vim                  " default is enabled
+
+                                " hb ( )
+                                " B { }
+                                " [ ]
+                                " '
+                                " "
+                                " `
+                                " a >     (angle brackets, no whitespace)
+                                " t <     (XML tags, asks for input)
+                                " example:
+                                " 1. Press ysE" to wrap all characters till the next space in double quotes (text objects can also be used, e.g. ysit").
+                                " 2. Use cs"} to change those double quotes into curly brackets.
+                                " 3. Pressing ds} will then remove the surrounding curly brackets.
+                                "
+                                " Finally, let's try out visual mode. Press a capital V (for linewise visual mode) followed by S<p>. 
+                                " <p> 
+                                "   Hello world! 
+                                " </p> 
+                                
+" Programming Language Plugins java extensions
+                                " Each of these plugins provide the following commands:
+                                " 
+                                " gcc	comment/uncomment current line
+                                " gc<text object>	comment/uncomment text object
+                                " ==	auto-indent current line (not applicable for PyDev)
+                                " =<text object>	auto-indent text object (not applicable for PyDev)
+                                " Ctrl+]
+                                " gd
+                                " gD	go to declaration of object under cursor
+                                " gR	rename element
+                                " :format	call underlying language's source code formatter
+                                " 
+                                " In addition to this, the JDT plugin also provides these commands:
+                                " 
+                                " gr	activate Eclipse's 'refactor' menu
+                                " gm	activate Eclipse's 'source' menu
+
+" Argument Text Object (argtextobj.vim) Plugin
+                                " This script defines a text object a (argument) to easily modify arguments within a method declaration.
+
+" Line Text Object (textobj-line.vim) Plugin
+                                " This script defines a text object l (line) to select everything within a line (minus the newline) or everything within the line without any trailing or starting whitespace.
+
+" Method Text Object (methodtextobj.vim) Plugin
+                                " This script defines a text object f (function) to easily change and delete function contents. 
+                                " It is defined as the 2nd-level of matching { and } in a file (where a class definition would be the 1st-level). Thus it is handy for Java and C++ source files or similarly formatted code.
+
+" Sub-Word Text Object (camelcasemotion.vim) Plugin
+                                " Our Sub-Word Text Object plugin is based loosely on camelcasemotion.vim. 
+                                " A convenience command :subwordmappings will automatically configure the mappings:
+noremap <Leader>b <Plug>(subword-back)
+noremap <Leader>e <Plug>(subword-end)
+noremap <Leader>w <Plug>(subword-word)
+vnoremap i<Leader> <Plug>(subword-inner)
+onoremap i<Leader> <Plug>(subword-inner)
+vnoremap a<Leader> <Plug>(subword-outer)
+onoremap a<Leader> <Plug>(subword-outer)
+
+" Exchange (exchange.vim) Plugin
+                                " cx
+                                " On the first use, define the first {motion} to exchange. On the second use, define the second {motion} and perform the exchange.
+                                " cxx
+                                " Like cx, but use the current line.
+                                " X
+                                " Like cx, but for Visual mode.
+                                " cxc
+                                " Clear any {motion} pending for exchange.
+                                " 
+                                " Some notes
+                                " If you're using the same motion again (e.g. exchanging two words using cxiw), you can use . the second time.        
+
+" +------------------------------------------------------------------------------------+
+set clipboard=unnamed           " set clipboard to unnamed to access the system clipboard under windows
