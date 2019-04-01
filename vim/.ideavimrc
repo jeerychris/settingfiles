@@ -34,18 +34,11 @@ set clipboard=unnamed           " set clipboard to unnamed to access the system 
 " Movement
 " ============================================================================
 
-" Insert mode
-" inoremap <C-k> <Up>
-" inoremap <C-j> <Down>
-" inoremap <C-l> <Right>
-" inoremap <C-h> <Left>
-
-" ============================================================================
-" Editing
-" ============================================================================
-
 " Select all text
 noremap <Space>a ggVG
+
+" highlight last inserted text
+nnoremap gV `[v`]
 
 noremap Y y$
 noremap j gj
@@ -66,29 +59,33 @@ noremap ,v :source ~/.ideavimrc<CR>
 " IDE actions
 " ============================================================================
 
-" nnoremap / :action Find<CR>
-" nnoremap n :action FindNext<CR>
-" nnoremap N :action FindPrevious<CR>
+" nnoremap / :action find<cr>
+" nnoremap n :action findnext<cr>
+" nnoremap n :action findprevious<cr>
 nnoremap U :action $Redo<CR>
 " nnoremap ; :action AceJumpAction<CR>
 " nnoremap <Space>o :action GotoClass<CR>
 " nnoremap <Space>O :action GotoFile<CR>
 nnoremap g; :action JumpToLastChange<CR>
 nnoremap g, :action JumpToNextChange<CR>
-nnoremap ,w :action CloseContent<CR>
 nnoremap ,f :action FileStructurePopup<CR>
 " Error navigate
-nnoremap ,n :action GotoNextError<CR>
-nnoremap ,N :action GotoPreviousError<CR>
-nnoremap ,, :action ShowErrorDescription<CR>
+nnoremap ,, :action GotoNextError<CR>:action ShowErrorDescription<CR>
+nnoremap ,; :action GotoPreviousError<CR>:action ShowErrorDescription<CR>
+
 " enhance vim jump
-nnoremap <C-O> :action Back<CR>
-nnoremap <C-I> :action Forward<CR>
+" nnoremap go :action Back<CR>
+" nnoremap gi :action Forward<CR>
+nnoremap go <C-o>
+nnoremap gi <C-i>
+nnoremap gI :action GotoImplementation<CR>
+nnoremap gn :action MethodDown<CR>
+nnoremap gN :action MethodUp<CR>
 
 " same with eclipse vrapper JDT plugin map
 noremap gr :action Refactorings.QuickListPopupAction<CR>
 noremap gR :action RenameElement<CR>
-nnoremap gm :action Generate<CR>
+noremap gm :action Generate<CR>
 
 noremap ,t :action SurroundWith<CR>
 
@@ -99,4 +96,4 @@ set multiple-cursors
 " Most prefer to toggle search highlighting rather than clear the current
 " search results. To clear search highlighting rather than toggle it on
 " and off, add the following to your .vimrc.before.local file:
-nmap <silent> <leader>\ :nohlsearch<CR>
+nmap <silent> <leader><space> :nohlsearch<CR>
