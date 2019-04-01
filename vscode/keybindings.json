@@ -1,0 +1,24 @@
+// Place your key bindings in this file to override the defaultsauto[]
+[
+    {
+        "key": "ctrl+alt+q",
+        "command": "toggleVim"
+    },
+    {
+        "key": "ctrl+shift+i",
+        "command": "workbench.action.toggleDevTools",
+        "when": "editorFocus"
+    },
+    {
+        "key": "alt+`",
+        "command": "workbench.view.explorer"
+    },
+]
+/*
+// folding
+Ctrl+K Ctrl+[	Fold (collapse) all subregions	editor.foldRecursively
+Ctrl+K Ctrl+]	Unfold (uncollapse) all subregions	editor.unfoldRecursively
+Ctrl+K Ctrl+0	Fold (collapse) all regions	editor.foldAll
+Ctrl+K Ctrl+J	Unfold (uncollapse) all regions	editor.unfoldAll
+Ctrl+K Ctrl+/	Fold all block comments
+*/

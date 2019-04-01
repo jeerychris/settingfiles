@@ -1,0 +1,384 @@
+{
+    // ----------------------------------vim mode---------------------------------
+    // vim:set foldmarker={,} foldlevel=0:
+    // details: ~/.vscode\extensions\vscodevim.vim-1.2.0\README.md
+    // gd - jump to definition.
+    // gq - on a visual selection reflow and wordwrap blocks of text, preserving commenting style. Great for formatting documentation comments.
+    // gb - adds another cursor on the next word it finds which is the same as the word under the cursor.
+    // af - visual mode command which selects increasingly large blocks of text. For example, if you had "blah (foo [bar 'ba|z'])" then it would select 'baz' first. If you pressed af again, it'd then select [bar 'baz'], and if you did it a third time it would select "(foo [bar 'baz'])".
+    // gh - equivalent to hovering your mouse over wherever the cursor is. Handy for seeing types and error messages without reaching for the mouse!
+    //
+    // original vim
+    "vim.history": 2000,
+    "vim.showmodename": true,
+    "vim.showcmd": true,
+    "vim.incsearch": true,
+    "vim.ignorecase": true,
+    "vim.hlsearch": true,
+    "vim.smartcase": true,
+    "vim.autoindent": true,
+    "vim.textwidth": 80,
+    // others
+    "vim.useSystemClipboard": true,
+    "vim.visualstar": true,
+    "vim.startInInsertMode": false,
+    "vim.foldfix": true,
+    // input method program, auto switch to default IM when leave insert mode
+    "vim.autoSwitchInputMethod.enable": true,
+    "vim.autoSwitchInputMethod.defaultIM": "1033",
+    "vim.autoSwitchInputMethod.obtainIMCmd": "D:\\developer\\tools\\vscode\\im-select.exe",
+    "vim.autoSwitchInputMethod.switchIMCmd": "D:\\developer\\tools\\vscode\\im-select.exe {im}",
+    // neovim integration
+    /*
+    :normal command
+    2  AD,42.546245,1.601554,Andorra,376
+    3  AE,23.424076,53.847818,United Arab Emirates,971
+    4  AF,33.93911,67.709953,Afghanistan,93
+    5  AG,17.060816,-61.796428,Antigua and Barbuda,1
+    ==>
+    AD,42.546245,1.601554,Andorra,376
+    AE,23.424076,53.847818,United Arab Emirates,971
+    AF,33.93911,67.709953,Afghanistan,93
+    AG,17.060816,-61.796428,Antigua and Barbuda,1
+    ==>use :32,35normal d2w
+    */
+    "vim.enableNeovim": true,
+    "vim.neovimPath": "D:\\developer\\tools\\Neovim\\bin\\nvim.exe",
+    //
+    // ctrl keys, map in g-char remap instead
+    "vim.useCtrlKeys": false,
+    // "vim.leader": "<space>",
+    "vim.handleKeys": {
+        "<C-a>": false,
+        "<C-f>": false,
+        "<C-d>": false
+    },
+    "vim.insertModeKeyBindings": [
+        {
+            "before": [
+                "j",
+                "j"
+            ],
+            "after": [
+                "<C-o>"
+            ]
+        }
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        // base remapping
+        {
+            "before": [
+                "<leader>",
+                "<space>"
+            ],
+            "commands": [
+                ":nohl"
+            ]
+        },
+        {
+            "before": [
+                "H"
+            ],
+            "after": [
+                "^"
+            ]
+        },
+        {
+            "before": [
+                "L"
+            ],
+            "after": [
+                "$"
+            ]
+        },
+        {
+            "before": [
+                "Y"
+            ],
+            "after": [
+                "y$"
+            ]
+        },
+        {
+            "before": [
+                "j"
+            ],
+            "after": [
+                "g",
+                "j"
+            ]
+        },
+        {
+            "before": [
+                "k"
+            ],
+            "after": [
+                "g",
+                "k"
+            ]
+        },
+        {
+            "before": [
+                "U"
+            ],
+            "after": [
+                "<C-r>"
+            ]
+        },
+        {
+            "before": [
+                "g",
+                "i"
+            ],
+            "after": [
+                "<C-i>"
+            ]
+        },
+        {
+            "before": [
+                "g",
+                "o"
+            ],
+            "after": [
+                "<C-o>"
+            ]
+        },
+        {
+            "before": [
+                "g",
+                "w"
+            ],
+            "after": [
+                "<C-w>"
+            ]
+        },
+        {
+            "before": [
+                "g",
+                "V"
+            ],
+            "after": [
+                "<C-v>"
+            ]
+        },
+        // advanced
+        {
+            "before": [
+                "z",
+                "r"
+            ],
+            "commands": [
+                "editor.unfoldRecursively"
+            ]
+        },
+        {
+            "before": [
+                "z",
+                "m"
+            ],
+            "commands": [
+                "editor.foldRecursively"
+            ]
+        },
+        {
+            "before": [
+                "g",
+                ":"
+            ],
+            "commands": [
+                "workbench.action.quickOpen"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "b"
+            ],
+            "commands": [
+                "bookmarks.listFromAllFiles"
+            ]
+        }
+    ],
+    "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                ">"
+            ],
+            "after": [
+                ">",
+                "g",
+                "v"
+            ]
+        },
+        {
+            "before": [
+                "<"
+            ],
+            "after": [
+                "<",
+                "g",
+                "v"
+            ]
+        },
+        {
+            "before": [
+                "j"
+            ],
+            "after": [
+                "g",
+                "j"
+            ]
+        },
+        {
+            "before": [
+                "k"
+            ],
+            "after": [
+                "g",
+                "k"
+            ]
+        },
+        {
+            "before": [
+                "y"
+            ],
+            "after": [
+                "y",
+                "`",
+                ">"
+            ]
+        }
+    ],
+    //////////////////////////////////////////////////////////////////////////////////
+    // plugins emulations
+    // easymotion, surround, commentary, indent-object, vim-sneak, vim-camelCaseMotion
+    //////////////////////////////////////////////////////////////////////////////////
+    // easymotion
+    /*
+    <leader><leader> s <char>	Search character
+    <leader><leader> j	Start of line forwards
+    <leader><leader> k	Start of line backwards
+    <leader><leader> (2s|2f|2F|2t|2T) <char><char>
+    <leader><leader> / <char>... <CR>	Search n-character
+    <leader><leader><leader> bdjk	Start of line
+    */
+    "vim.easymotion": true,
+    // surround.vim
+    /*
+    pending operators:
+    ds, ys, cs
+    S for visual mode
+    text objs:
+    a   <>
+    t   tag
+    b   ()
+    B   {}
+    */
+    "vim.surround": true,
+    // vim-commentary.vim
+    /*
+    gc  line
+    gC  block
+    */
+    // vim-indent-object.vim
+    /*
+    <operator>ii	This indentation level
+    <operator>ai	This indentation level and the line above (think if statements in Python)
+    <operator>aI	This indentation level, the line above, and the line after (think if statements in C/C++/Java/etc)
+    */
+    // sneak
+    /*
+    ```markdown
+    | Motion Command            | Description                                                            |
+    | ------------------------- | ---------------------------------------------------------------------- |
+    | `s<char><char>`           | Move forward to the first occurence of `<char><char>`                  |
+    | `S<char><char>`           | Move backward to the first occurence of `<char><char>`                 |
+    | `<operator>z<char><char>` | Perform `<operator>` forward to the first occurence of `<char><char>`  |
+    | `<operator>Z<char><char>` | Perform `<operator>` backward to the first occurence of `<char><char>` |
+    ```
+    */
+    "vim.sneak": true,
+    "vim.sneakUseIgnorecaseAndSmartcase": true,
+    // vim-camelCaseMotion
+    /*
+    ```markdown
+    | Motion Command         | Description                                                                |
+    | ---------------------- | -------------------------------------------------------------------------- |
+    | `<leader>w`            | Move forward to the start of the next camelCase or snake_case word segment |
+    | `<leader>e`            | Move forward to the next end of a camelCase or snake_case word segment     |
+    | `<leader>b`            | Move back to the prior beginning of a camelCase or snake_case word segment |
+    | `<operator>i<leader>w` | Select/change/delete/etc. the current camelCase or snake_case word segment |
+    ```
+    */
+    "vim.camelCaseMotion.enable": true,
+    // ----------------------------------vim mode---------------------------------
+    "workbench.startupEditor": "readme",
+    "workbench.iconTheme": "vscode-icons",
+    "workbench.commandPalette.history": 1000,
+    "workbench.quickOpen.preserveInput": true,
+    "workbench.editor.enablePreviewFromQuickOpen": false,
+    // editor
+    "editor.fontFamily": "Consolas, 'Courier New', monospace",
+    "editor.foldingStrategy": "auto",
+    "editor.formatOnSave": true,
+    "editor.insertSpaces": true,
+    "editor.minimap.enabled": false,
+    "editor.renderWhitespace": "none",
+    "editor.renderLineHighlight": "all",
+    // window view
+    "window.zoomLevel": 0,
+    "files.autoGuessEncoding": true,
+    "files.exclude": {
+        // default
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        // java
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
+    },
+    "search.exclude": {
+        // default
+        "**/node_modules": true,
+        "**/bower_components": true
+    },
+    // others
+    "terminal.integrated.shell.windows": "C:\\Windows\\System32\\cmd.exe",
+    "breadcrumbs.enabled": true,
+    // plugins 
+    // git
+    // debug
+    "debug.inlineValues": true,
+    // vscode icons plugin
+    "markdown.preview.openMarkdownLinks": "inEditor",
+    // languages
+    // code runnner
+    "code-runner.executorMap": {
+        "html": "\"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe\""
+    },
+    // java
+    // maven for java
+    "java.configuration.maven.userSettings": "d:\\developer\\apache-maven-3.6.0\\conf\\settings.xml",
+    // python
+    "python.jediEnabled": false,
+    // markdown
+    "markdown.preview.markEditorSelection": true,
+    "[markdown]": {
+        "editor.wordWrap": "on",
+        "editor.quickSuggestions": false,
+        "editor.lineNumbers": "on"
+    },
+    "workbench.colorTheme": "Solarized Dark",
+    "explorer.confirmDelete": false,
+}
+// tips and tricks
+/*
+// editing hacks
+expand shrink selection:    S-A-left/right
+multiple cursor:
+undo cursor:                
+*/
