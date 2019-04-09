@@ -312,6 +312,10 @@
     */
     "vim.camelCaseMotion.enable": true,
     // ----------------------------------vim mode---------------------------------
+    "update.enableWindowsBackgroundUpdates": false,
+    "update.mode": "manual",
+    "extensions.autoUpdate": false,
+    "extensions.autoCheckUpdates": false,
     "workbench.startupEditor": "readme",
     "workbench.iconTheme": "vscode-icons",
     "workbench.commandPalette.history": 1000,
@@ -356,6 +360,12 @@
     // vscode icons plugin
     "markdown.preview.openMarkdownLinks": "inEditor",
     // languages
+    // eslint
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        "vue"
+    ],
     // code runnner
     "code-runner.executorMap": {
         "html": "\"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe\""
@@ -374,6 +384,9 @@
     },
     "workbench.colorTheme": "Solarized Dark",
     "explorer.confirmDelete": false,
+    "maven.executable.preferMavenWrapper": false,
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
 }
 // tips and tricks
 /*
