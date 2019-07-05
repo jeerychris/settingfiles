@@ -4,58 +4,75 @@
 " scriptnames              " show vim load path, incluing vimrc
 " options                  "
 
-" vundle configure
+" vundle plugins manager {
 " +---------------------------------------------------------------------------------------------+
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
+set rtp+=~/.fzf
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-"
-" plugin on GitHub repo
-" Plugin 'tpope/vim-fugitive'
-"
-" plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
-" 
-" Git plugin not hosted on GitHub
-" Plugin 'git://git.wincent.com/command-t.git'
-"
-" git repos on your local machine (i.e. when working on your own plugin)
-" Plugin 'file:///home/gmarik/path/to/plugin'
+" Utility
+Plugin 'scrooloose/nerdtree'
+Plugin 'majutsushi/tagbar'
+Plugin 'ervandew/supertab'
 
-"Plugin 'file://usr/share/vim/vim80/plugin/exchange.vim'
-"Plugin 'file://usr/share/vim/vim80/plugin/surround.vim'
+Plugin 'Shougo/neocomplete'
+
+" if has('nvim')
+"   Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" else
+"   Plugin 'Shougo/deoplete.nvim'
+"   Plugin 'roxma/nvim-yarp'
+"   Plugin 'roxma/vim-hug-neovim-rpc'
+" endif
+" let g:python3_host_prog='python'
+" let g:deoplete#enable_at_startup = 1
+
 Plugin 'mattn/emmet-vim'
-Plugin 'argtextobj.vim'
 
+Plugin 'argtextobj.vim'
+Plugin 'michaeljsmith/vim-indent-object'
+Plugin 'wellle/targets.vim'
+
+Plugin 'Townk/vim-autoclose'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-surround'
+Plugin 'juntinmk/vim-sneak'
+Plugin 'easymotion/vim-easymotion'
+" beautify status line
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+" git 
+Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
+
+" theme
+Plugin 'tomasr/molokai'
+Plugin 'altercation/vim-colors-solarized.git'
+
+" fzf vim plugin
+Plugin 'junegunn/fzf.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
+
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 "
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
 " see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
 " +---------------------------------------------------------------------------------------------+
+" }
 
-" git default vimrc
+" git default vimrc {
 " +---------------------------------------------------------------------------------------------+
 " Setting some decent VIM settings for programming
 set nocompatible                " vi compatible is LAME
@@ -69,9 +86,6 @@ set showmode                    " show the current mode
 
 " uncomment to set clipboard to unnamed to access the system clipboard under windows
 set clipboard=unnamed           
-
-" Show EOL type and last modified timestamp, right after the filename
-" set statusline=%<%f%h%m%r\ [%{&ff}]\ (%{strftime(\"%H:%M\ %d/%m/%Y\",getftime(expand(\"%:p\")))})%=%l,%c%V\ %P
 
 "------------------------------------------------------------------------------
 " Only do this part when compiled with support for autocommands.
@@ -101,6 +115,7 @@ if has("autocmd")
 endif 
 
 " +---------------------------------------------------------------------------------------------+
+" }
 
 
 " encoding dectection
@@ -117,16 +132,16 @@ autocmd FileType text setlocal textwidth=78
 "--------
 " color scheme
 set background=dark
-colorscheme monokai
+colorscheme solarized
 
-
+" options {
 " Broken down into easily includeable segments
-set statusline=%<%F\                     " Filename
-set statusline+=%w%h%m%r                 " Options
-set statusline+=\ [%{&ff}/%Y]            " Filetype
+" set statusline=%<%F\                     " Filename
+" set statusline+=%w%h%m%r                 " Options
+" set statusline+=\ [%{&ff}/%Y]            " Filetype
 " set statusline+=\ [%{getcwd()}]          " Current dir
-set statusline+=\ (%{strftime(\"%H:%M\ %d/%m/%Y\",getftime(expand(\"%:p\")))})
-set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
+" set statusline+=\ (%{strftime(\"%H:%M\ %d/%m/%Y\",getftime(expand(\"%:p\")))})
+" set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
 
 set splitright                  " Puts new vsplit windows to the right of the current
 set nojoinspaces                " Prevents inserting two spaces after punctuation on a join (J)
@@ -135,33 +150,25 @@ set nojoinspaces                " Prevents inserting two spaces after punctuatio
 syntax on
 
 " highlight current line
-au WinLeave * set nocursorline nocursorcolumn
-au WinEnter * set cursorline cursorcolumn
+" au WinLeave * set nocursorline nocursorcolumn
+" au WinEnter * set cursorline cursorcolumn
 
 " search
 set incsearch
 set hlsearch  
-set ignorecase
+set ignorecase  
 set smartcase
-
-" Most prefer to toggle search highlighting rather than clear the current
-" search results. To clear search highlighting rather than toggle it on
-" and off, add the following to your .vimrc.before.local file:
-nmap <silent> <leader>\ :nohlsearch<CR>
 
 " editor settings
 set history=1000
 set confirm                                                       " prompt when existing from an unsaved file
-set t_Co=256                                                      " Explicitly tell vim that the terminal has 256 colors "
 set mouse=a                                                       " use mouse in all modes
 set report=0                                                      " always report number of lines changed                "
 set nowrap                                                        " dont wrap lines
 set scrolloff=3                                                   " 5 lines above/below cursor when scrolling
 set number                                                        " show line numbers
-set showmatch                                                     " show matching bracket (briefly jump)
 set showcmd                                                       " show typed command in status bar
 set title                                                         " show file in titlebar
-set laststatus=2                                                  " use 2 lines for the status bar
 set matchtime=2                                                   " show matching bracket for 0.2 seconds
 set matchpairs+=<:>                                               " specially for html
 
@@ -174,6 +181,10 @@ set softtabstop=4   " backspace
 set shiftwidth=4    " indent width
 
 autocmd FileType text setlocal textwidth=79
+
+set foldmarker={,}
+set foldlevel=1
+set foldmethod=marker
 
 set smarttab
 set expandtab       " expand tab to space
@@ -188,6 +199,10 @@ set undofile                " So is persistent undo ...
 set undolevels=1000         " Maximum number of changes that can be undone
 set undoreload=10000        " Maximum number lines to save for undo on a buffer reload
 
+set wildmenu                " visual autocomplete for command menu
+" }
+
+
 "------------------
 " Useful Functions
 "------------------
@@ -199,11 +214,6 @@ autocmd BufReadPost *
             \     endif |
             \ endif
 
-
-" self added 
-set clipboard=unnamed           " set clipboard to unnamed to access the system clipboard under windows
-set wildmenu                    " visual autocomplete for command menu
-
 noremap zl zL
 noremap zh zH
 noremap H ^
@@ -211,7 +221,17 @@ noremap L $
 
 " highlight last inserted text
 nnoremap gV `[v`]
+nnoremap <space>v <C-V>
 noremap Y y$
+
+nnoremap U <C-R>
+nnoremap <space><space> @:
+
+" Most prefer to toggle search highlighting rather than clear the current
+" search results. To clear search highlighting rather than toggle it on
+" and off, add the following to your .vimrc.before.local file:
+nmap <silent> <leader><space> :nohlsearch<CR>
+
 
 " Wrapped lines goes down/up to next row, rather than next line in file.
 noremap j gj
@@ -222,9 +242,139 @@ vnoremap < <gv
 vnoremap > >gv
 
 " visual searching :search for visually highlighted text
-:vmap // y/<C-R>"
+vmap * y/<C-R>"<CR>
 
-noremap <C-P> <C-W>p
+" If you prefer that functionality, add the following to your
+" .vimrc.before.local file:
+"   let g:spf13_no_easyWindows = 1
+if !exists('g:spf13_no_easyWindows')
+    map <C-J> <C-W>j
+    map <C-K> <C-W>k
+    map <C-L> <C-W>l
+    map <C-H> <C-W>h
+    map <C-P> <C-W>p
+endif
+noremap gw <C-w>
 
 " display RGB colour under the cursor eg 136 
-:nmap <leader>c :hi Normal ctermbg=<c-r>=expand("<cword>")<cr><cr>
+nmap <leader>c :hi Normal ctermbg=<c-r>=expand("<cword>")<cr><cr>
+
+" +-------------------------plugins specific------------------------+ {
+" Nerdtree, Tagbar
+map <space>1 :NERDTreeToggle<CR>
+map <space>2 :TagbarToggle<CR>
+
+" fzf
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-h': 'vsplit' }
+
+" autoclose
+let g:AutoClosePairs_add="<>"
+
+" neocomplete, use deoplete instead {
+"
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+
+" Define dictionary.
+let g:neocomplete#sources#dictionary#dictionaries = {
+    \ 'default' : '',
+    \ 'vimshell' : $HOME.'/.vimshell_hist',
+    \ 'scheme' : $HOME.'/.gosh_completions'
+        \ }
+
+" Define keyword.
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+" Plugin key-mappings.
+inoremap <expr><C-g>     neocomplete#undo_completion()
+inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? "\<C-y>" : "\<CR>"
+endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+" Close popup by <Space>.
+"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
+
+" AutoComplPop like behavior.
+"let g:neocomplete#enable_auto_select = 1
+
+" Shell like behavior(not recommended).
+"set completeopt+=longest
+"let g:neocomplete#enable_auto_select = 1
+"let g:neocomplete#disable_auto_complete = 1
+"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
+
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" Enable heavy omni completion.
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+
+" For perlomni.vim setting.
+" https://github.com/c9s/perlomni.vim
+" let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+" }
+
+" airline {
+let g:airline#extensions#tabline#enabled = 0
+let g:airline_powerline_fonts = 1 
+let g:airline_theme='hybrid'
+let g:hybrid_custom_term_colors = 1
+
+let g:airline_left_sep='>'
+let g:airline_right_sep='<'
+let g:airline_inactive_collapse=1
+let g:airline_detect_modified=1
+let g:airline_inactive_alt_sep=1
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+let g:airline_symbols.whitespace = 'Ξ'
+" }
+
+" sneak
+let g:sneak#label=0
+let g:sneak#f_reset = 1
+let g:sneak#t_reset = 1
+let g:sneak#use_ic_scs = 1
+
+" gitgutter
+" jump to chang `[c`, `]c`
+" stage the hunk with `<Leader>hs`, " undo it with `<Leader>hu`.
+" preview: <Leader>hp
+" hunk text obj, ic, ac, like cmd vic
+set updatetime=4000
+let g:gitgutter_max_signs = 500  " default value
+autocmd BufWritePost * GitGutter
+" +------------------------------plugins-----------------------------------+ }
