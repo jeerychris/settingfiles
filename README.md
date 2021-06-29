@@ -1,3 +1,3 @@
-DATE: 2018-04-04
+DATE: Wed Jun 30 04:16:28 2021
 
-setting file for common developer tools
+setting file for common devtools
