@@ -40,6 +40,7 @@ set undoreload=10000        " Maximum number lines to save for undo on a buffer 
 
 " common
 set wildignorecase
+set fileignorecase
 set wildmenu                " visual autocomplete for command menu
 set showmode                " show the current mode
 set showcmd
@@ -51,11 +52,14 @@ set scrolloff=3                                                   " 5 lines abov
 set title                                                         " show file in titlebar
 set matchtime=2                                                   " show matching bracket for 0.2 seconds
 set matchpairs+=<:>                                               " specially for html
-" set virtualedit=all " uncomment for table edit
+
+" uncomment for table edit
+" set virtualedit=all
+
 set splitright
-set laststatus=2                " make the last line where the status is two lines deep so you can see status always
-set backspace=indent,eol,start  " make that backspace key work the way it should
-set showtabline=0   " disable tab page promps
+set laststatus=2                  " make the last line where the status is two lines deep so you can see status always
+set backspace=indent,eol,start    " make that backspace key work the way it should
+set showtabline=0                 " disable tab page promps
 set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1
 
 " syntax
@@ -67,9 +71,14 @@ set background=dark
 set nu
 set relativenumber
 set cursorline
-set colorcolumn=78
+" set colorcolumn=78
 " au WinLeave * set nocursorcolumn
 " au WinEnter * set cursorcolumn
+
+augroup my_ft
+    autocmd FileType text setlocal textwidth=78
+    autocmd FileType vim imap <tab> <c-x><c-v>
+augroup END
 
 " remap {{{
 noremap zl zL
@@ -96,13 +105,15 @@ nnoremap <space><space>v :source ~/.vim/basic.vim<cr>
 map gi l
 map gw <c-w>
 map <space>w <c-w>
+
+inoremap <silent><expr> <space> pumvisible() ? "\<C-Y>" : "\<space>"
 " }}}
 
 if has("cscope")
     if (executable('gtags') && executable('gtags-cscope'))
         set csprg=gtags-cscope
-        source ~/.vim/bundle/gtags/plugin/gtags.vim
-        source ~/.vim/bundle/gtags/plugin/gtags-cscope.vim
+        source ~/.vim/plugin/gtags.vim
+        source ~/.vim/plugin/gtags-cscope.vim
         let GtagsCscope_Auto_Map = 1
         let GtagsCscope_Ignore_Case = 1
         " let GtagsCscope_Absolute_Path = 1
@@ -136,7 +147,10 @@ nmap gif :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nmap gid :cs find d <C-R>=expand("<cword>")<CR><CR>
 nmap gia :cs find a <C-R>=expand("<cword>")<CR><CR>
 
-iabbrev fo for (size_t i = 0; i < len; i++) {}
+" builtin package
+packadd matchit
+
+" iabbrev fo for (size_t i = 0; i < len; i++) {}
 
 " vim:fdm=marker:fmr={{{,}}}:fdl=0:
 
